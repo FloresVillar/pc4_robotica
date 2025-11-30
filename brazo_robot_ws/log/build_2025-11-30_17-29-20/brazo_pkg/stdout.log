@@ -1,0 +1,24 @@
+running develop
+running egg_info
+creating brazo_pkg.egg-info
+writing brazo_pkg.egg-info/PKG-INFO
+writing dependency_links to brazo_pkg.egg-info/dependency_links.txt
+writing entry points to brazo_pkg.egg-info/entry_points.txt
+writing requirements to brazo_pkg.egg-info/requires.txt
+writing top-level names to brazo_pkg.egg-info/top_level.txt
+writing manifest file 'brazo_pkg.egg-info/SOURCES.txt'
+reading manifest file 'brazo_pkg.egg-info/SOURCES.txt'
+writing manifest file 'brazo_pkg.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/lib/python3.12/site-packages/brazo-pkg.egg-link (link to .)
+Installing mover_brazo script to /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/bin
+
+Installed /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg
+running symlink_data
+symbolically linking /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/package.xml -> /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg
+creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/launch
+symbolically linking /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/launch/brazo_sim.launch.py -> /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/launch
+creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/rviz
+creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/urdf
+symbolically linking /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/urdf/brazo.xacro -> /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/urdf
+creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/meshes

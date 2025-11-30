@@ -1,0 +1,2 @@
+[console_scripts]
+mover_brazo = brazo_pkg.mover_brazo:main

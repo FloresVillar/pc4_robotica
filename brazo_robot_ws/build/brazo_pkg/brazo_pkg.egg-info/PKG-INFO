@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: brazo-pkg
+Version: 0.0.1
+Summary: Paquete de ejemplo para controlar un brazo robot en ROS 2 Kilted
+Maintainer: Esau
+Maintainer-email: tu_email@dominio.com
+License: Apache-2.0

@@ -1,0 +1,26 @@
+[0.807s] Invoking command in '/home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg': PS1=(.venv_pc4_robotica) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv_pc4_robotica) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/build --no-deps symlink_data
+[1.124s] running develop
+[1.449s] running egg_info
+[1.449s] creating brazo_pkg.egg-info
+[1.496s] writing brazo_pkg.egg-info/PKG-INFO
+[1.497s] writing dependency_links to brazo_pkg.egg-info/dependency_links.txt
+[1.497s] writing entry points to brazo_pkg.egg-info/entry_points.txt
+[1.497s] writing requirements to brazo_pkg.egg-info/requires.txt
+[1.498s] writing top-level names to brazo_pkg.egg-info/top_level.txt
+[1.498s] writing manifest file 'brazo_pkg.egg-info/SOURCES.txt'
+[1.587s] reading manifest file 'brazo_pkg.egg-info/SOURCES.txt'
+[1.593s] writing manifest file 'brazo_pkg.egg-info/SOURCES.txt'
+[1.646s] running build_ext
+[1.646s] Creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/lib/python3.12/site-packages/brazo-pkg.egg-link (link to .)
+[1.657s] Installing mover_brazo script to /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/bin
+[1.658s] 
+[1.658s] Installed /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg
+[1.658s] running symlink_data
+[1.658s] symbolically linking /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/package.xml -> /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg
+[1.659s] creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/launch
+[1.659s] symbolically linking /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/launch/brazo_sim.launch.py -> /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/launch
+[1.659s] creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/rviz
+[1.660s] creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/urdf
+[1.660s] symbolically linking /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/urdf/brazo.xacro -> /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/urdf
+[1.660s] creating /home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/share/brazo_pkg/meshes
+[1.813s] Invoked command in '/home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg' returned '0': PS1=(.venv_pc4_robotica) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/esau/pc4_robotica/brazo_robot_ws/install/brazo_pkg/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv_pc4_robotica) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/esau/pc4_robotica/brazo_robot_ws/build/brazo_pkg/build --no-deps symlink_data
