@@ -187,4 +187,4 @@ ros2 topic bw /turtle1/pose
 ros2 topic find <topic_type>
 ```
 ##### servicios
-Se podria profundizar mas, el tema es muy interesante, sin embargo ahora se realiza lo practico
+Se podria profundizar mas, el tema es muy interesante, sin embargo ahora se realiza lo practico.
