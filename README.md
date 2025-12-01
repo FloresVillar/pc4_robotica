@@ -301,3 +301,50 @@ Al ejecutarlo inciamos los 3 nodos mencionados mover_brazo → robot_state_publi
     width="65%"
     >
 </p>
+ 
+Un resumen del flujo de mensajes desde los nodos mediante el canal (topic)
+```bash
+┌─────────────────────────── ┐
+│       mover_brazo.py       │
+│--------------------------- │
+│ • Calcula ángulos          │
+│ • Publica estados de joints│
+└───────────────┬─────────── ┘
+                │
+                │  Topic: /joint_states
+                │  Msg:   sensor_msgs/JointState
+                ▼
+        ╔═══════════════════════╗
+        ║   Flujo de mensajes   ║
+        ╚═══════════════════════╝
+                ▲
+                │  Suscripción interna
+┌───────────────┴───────────-┐
+│   robot_state_publisher    │
+│--------------------------- │
+│ • Lee robot_description    │
+│ • Recibe JointState        │
+│ • Calcula transformaciones │
+│ • Publica TF dinámicos     │
+└───────────────┬───────────-┘
+                │
+                │  Topic: /tf
+                │  Msg:   tf2_msgs/TFMessage
+                │
+                │  Topic: /tf_static
+                │  Msg:   tf2_msgs/TFMessage
+                ▼
+        ╔═══════════════════════╗
+        ║   Flujo de TF frames  ║
+        ╚═══════════════════════╝
+                ▲
+                │  RViz lee URDF + TF
+┌───────────────┴───────────┐
+│           RViz2           │
+│---------------------------│
+│ • Carga robot_description │
+│ • Usa /tf y /tf_static    │
+│ • Renderiza el robot 3D   │
+└───────────────────────────┘
+
+```
