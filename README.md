@@ -186,5 +186,6 @@ ros2 topic bw /turtle1/pose
 #encontrar tpicos que usen el tipo de mensaje
 ros2 topic find <topic_type>
 ```
-##### servicios
-Se podria profundizar mas, el tema es muy interesante, sin embargo ahora se realiza lo practico.
+##### servicios 
+Los servicios son otro modo de comunicacion,dan respuestas solo  cuando el cliente lo solicita.
+Bueno en este punto tenemos cierto bagaje, hay mucha teoria y muy interesante , pero con lo visto podemos afrontar la implementacion del proyecto (calificada) como tal.

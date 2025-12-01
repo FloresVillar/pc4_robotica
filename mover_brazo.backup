@@ -8,35 +8,39 @@ class MoverBrazo(Node):
         super().__init__('mover_brazo')
         self.joint_pub = self.create_publisher(JointState, '/joint_states', 10)
 
-        self.joint_names = ['joint1', 'joint2', 'joint3']  # azul, rojo, verde
+        # Nombres de las articulaciones
+        self.joint_names = ['joint1', 'joint2']
 
-        # Amplitudes máximas (rad)
-        self.amplitudes = [math.pi/4, math.pi/6, math.pi/6]  # último para inclinación
+        # Amplitudes máximas (radianes)
+        self.amplitudes = [math.pi/4, math.pi/6]  # 45°, 30°
 
         # Velocidades (rad/s)
-        self.speeds = [0.5, 0.3, 0.8]
+        self.speeds = [0.5, 0.3]  # más lento = más natural
 
+        # Timer a 50 Hz para suavidad máxima
         self.timer_period = 0.02
         self.timer = self.create_timer(self.timer_period, self.mover)
+
+        # Tiempo inicial
         self.start_time = self.get_clock().now().nanoseconds * 1e-9
 
     def mover(self):
+        # Tiempo transcurrido
         t = self.get_clock().now().nanoseconds * 1e-9 - self.start_time
 
-        # Movimiento azul y rojo: senoidal completo
-        angle1 = self.amplitudes[0] * math.sin(self.speeds[0] * t)
-        angle2 = self.amplitudes[1] * math.sin(self.speeds[1] * t)
+        # Cálculo de ángulos suavizados con seno
+        angles = [
+            self.amplitudes[0] * math.sin(self.speeds[0] * t),
+            self.amplitudes[1] * math.sin(self.speeds[1] * t)
+        ]
 
-        # Movimiento verde: inclinación suave tipo "pala"
-        max_angle = self.amplitudes[2]
-        angle3 = max_angle * (1 - math.cos(self.speeds[2] * t)) / 2  # va de 0 → max → 0 suavemente
-
-        angles = [angle1, angle2, angle3]
-
+        # Crear mensaje JointState
         msg = JointState()
-        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.stamp = self.get_clock().now().to_msg()  # timestamp actualizado
         msg.name = self.joint_names
         msg.position = angles
+
+        # Publicar
         self.joint_pub.publish(msg)
 
 def main(args=None):
