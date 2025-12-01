@@ -88,7 +88,7 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
 ```
 <p align="center">
     <img src="dos_tortugas.png" 
-    width="40%">
+    width="35%">
 </p>
 
 Entonces desde la terminal donde se ejecutó **ros2 run turtlesim turtle_teleop_key** se manipula a la primera tortuga y desde el terminal donde ejecutamos **ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=tortuga_2/cmd_vel** controlamos a la segunda.
@@ -128,7 +128,7 @@ Los tópicos son los canales por donde fluyen los mensajes de un nodo a otro. Es
 ```
 <p align="center">
     <img src="topic.png"
-    width="70%">
+    width="50%">
 </p>
 
 ### rqt_graph
@@ -176,7 +176,7 @@ ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0
 ```
 <p align="center">
     <img src="comandos.png"
-    width ="50%">
+    width ="35%">
 </p>
 
 Para ver las posiciones **ros2 topic echo /turtle1/pose** . O publicar mensajees con marca de tiempo **ros2 topic pub /pose geometry_msgs/msg/PoseStamped '{header: "auto", pose: {position: {x: 1.0, y: 2.0, z: 3.0}}}'**, y para observar info adicional:
@@ -298,6 +298,6 @@ Calculamos el angulo en cuestion , estos  abarcarán cada una de nuestras articu
 Al ejecutarlo inciamos los 3 nodos mencionados mover_brazo → robot_state_publisher→ rviz2; se crea el movimiento y luego se publica en el topico /Joint_states, como robot_state_publisher esta suscrito a este topico , los recibe , los transforma a TF . Se los pasa a RViz(osea rviz esta suscrito al topico /tf) y este muestra en pantalla en tiempo real los movimientos del brazo.
 <p align="center">
     <img src="brazo.png"
-    width="70%"
+    width="65%"
     >
 </p>
