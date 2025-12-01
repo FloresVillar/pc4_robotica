@@ -13,13 +13,14 @@
   <link name="link2">
   <visual>
     <geometry>
-      <cylinder length="0.5" radius="0.05"/>
+      <box size="0.1 0.1 0.5"/>
     </geometry>
     <material name="red">
       <color rgba="1 0 0 1"/>
     </material>
   </visual>
 </link>
+
   <joint name="joint1" type="revolute">
     <parent link="base_link"/>
     <child link="link1"/>
