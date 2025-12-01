@@ -284,7 +284,7 @@ Nuestros nodos realizan tareas concretas
 
 ### Topicos 
 Nuestros canales de comunicacion asincrono
-- **/joint_states** PUBCLICADO por mover_brazo.py en la linea **self.joint_pub = self.create_publisher(JointState, '/joint_states', 10)** , trabaja con tipos de mensajes sensor_msgs/JointState como se mencionó antes. SUSCRITO por **robot_state_publisher** en brazo_sim.launch.py , pero se hace internamente.Nosostros solo definimos Node robot_state_publisher en este .launch.py en cuestión.
+- **/joint_states** PUBLICADO por mover_brazo.py en la linea **self.joint_pub = self.create_publisher(JointState, '/joint_states', 10)** , trabaja con tipos de mensajes sensor_msgs/JointState como se mencionó antes. SUSCRITO por **robot_state_publisher** lo presentamos en brazo_sim.launch.py , a pesar de que la suscripcion se hace internamente.Nosostros solo definimos Node robot_state_publisher en este ".launch.py" en cuestión.
 
 ### Mensajes
 Como se viene mencionando el tipo de mensajes manejado por el topico es **sensor_msgs/JointState**, contiene la info del movimiento en unidades angulares, cada cierto tiempo calculamos funciones seno para mostrar movimientos suaves, lo publicamos en en el topico **/join_states** , de modo que RViz recibe (mediante robot_state_publisher) estos nuevos valores y actualiza las posiciones de los links(las articulaciones)
