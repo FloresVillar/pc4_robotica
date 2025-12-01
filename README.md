@@ -88,7 +88,7 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
 ```
 <p align="center">
     <img src="dos_tortugas.png" 
-    width="60%">
+    width="50%">
 </p>
 
 Entonces desde la terminal donde se ejecutó **ros2 run turtlesim turtle_teleop_key** se manipula a la primera tortuga y desde el terminal donde ejecutamos **ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=tortuga_2/cmd_vel** controlamos a la segunda.
@@ -111,7 +111,7 @@ Se datalla en forma grafica el sistema anterior
 ### nodos (nodes)
 <p align="center">
     <img src="grafo_ros2.png"
-    width="75%">
+    width="50%">
 </p>
 
 Para obtener informacion de algun nodo: **ros2 node info /my_turtle** , cambiar el nombre : **ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle**
@@ -132,7 +132,7 @@ Los tópicos son los canales por donde fluyen los mensajes de un nodo a otro. Es
 </p>
 
 ### rqt_graph
-##### topicos
+### topicos
 En la ventana rqt **Plugins/Introspection/Node graph** para visualizar de forma introspectiva los nodos ,temas y conexiones.
 <p align="center">
     <img src="rqt_graph.png"
@@ -188,7 +188,7 @@ ros2 topic bw /turtle1/pose
 #encontrar tpicos que usen el tipo de mensaje
 ros2 topic find <topic_type>
 ```
-##### servicios 
+### servicios 
 Los servicios son otro modo de comunicacion,dan respuestas solo  cuando el cliente lo solicita.
 Bueno en este punto tenemos cierto bagaje, hay mucha teoria y muy interesante , pero con lo visto podemos afrontar la implementacion del proyecto (calificada) como tal.
 
