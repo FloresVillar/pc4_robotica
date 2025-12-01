@@ -1,4 +1,6 @@
 # PC4 BRAZO ROBOTICO 
+
+
 seguir la guia de instalacion 
 
 https://docs.ros.org/en/kilted/Installation/Alternatives/Ubuntu-Development-Setup.html
@@ -189,3 +191,113 @@ ros2 topic find <topic_type>
 ##### servicios 
 Los servicios son otro modo de comunicacion,dan respuestas solo  cuando el cliente lo solicita.
 Bueno en este punto tenemos cierto bagaje, hay mucha teoria y muy interesante , pero con lo visto podemos afrontar la implementacion del proyecto (calificada) como tal.
+
+## Arquitectura del proyecto
+
+### Arbol de directorios
+```bash
+..
+├── bitacora_ejecucion.md
+├── brazo_robot_ws
+│   ├── build
+│   │   ├── brazo_pkg
+│   │   └── COLCON_IGNORE
+│   ├── install
+│   │   ├── brazo_pkg
+│   │   ├── COLCON_IGNORE
+│   │   ├── local_setup.bash
+│   │   ├── local_setup.sh
+│   │   ├── _local_setup_util_sh.py
+│   │   ├── local_setup.zsh
+│   │   ├── setup.bash
+│   │   ├── setup.sh
+│   │   └── setup.zsh
+│   ├── log
+│   │   ├── build_2025-11-30_17-29-20
+│   │   ├── build_2025-11-30_21-40-17
+│   │   ├── COLCON_IGNORE
+│   │   ├── latest -> latest_build
+│   │   └── latest_build -> build_2025-11-30_21-40-17
+│   └── src
+│       └── brazo_pkg
+├── build
+│   ├── brazo_pkg
+│   │   ├── brazo_pkg -> /home/esau/pc4_robotica/brazo_robot_ws/src/brazo_pkg/brazo_pkg
+│   │   ├── brazo_pkg.egg-info
+│   │   ├── colcon_build.rc
+│   │   ├── colcon_command_prefix_setup_py.sh
+│   │   ├── colcon_command_prefix_setup_py.sh.env
+│   │   ├── launch
+│   │   ├── package.xml -> /home/esau/pc4_robotica/brazo_robot_ws/src/brazo_pkg/package.xml      
+│   │   ├── prefix_override
+│   │   ├── setup.py -> /home/esau/pc4_robotica/brazo_robot_ws/src/brazo_pkg/setup.py
+│   │   ├── share
+│   │   └── urdf
+│   └── COLCON_IGNORE
+├── comandos.png
+├── dos_tortugas.png
+├── grafo_ros2.png
+├── install
+│   ├── brazo_pkg
+│   │   ├── bin
+│   │   ├── lib
+│   │   └── share
+│   ├── COLCON_IGNORE
+│   ├── local_setup.bash
+│   ├── local_setup.sh
+│   ├── _local_setup_util_sh.py
+│   ├── local_setup.zsh
+│   ├── setup.bash
+│   ├── setup.sh
+│   └── setup.zsh
+├── log
+│   ├── build_2025-11-30_21-53-29
+│   │   ├── brazo_pkg
+│   │   ├── events.log
+│   │   └── logger_all.log
+│   ├── COLCON_IGNORE
+│   ├── latest -> latest_build
+│   └── latest_build -> build_2025-11-30_21-53-29
+├── mover_brazo.backup
+├── qt.png
+├── README.md
+├── rqt_graph.png
+└── topic.png
+
+```
+### **Workspace**
+
+Es el directorio brazo_robot_ws, tiene el paquete y todos los archivos necesarios (**build/ , install/, log/**)
+- **brazo_robot_ws/src/brazo_pkg/urdf/brazo.xacro** se define el brazo robot es decir, la forma que tendran los brazos.
+
+- **brazo_robot_ws/src/brazo_pkg/launch/brazo_sim.launch.py** inicia la simulacion.
+
+- **brazo_robot_ws/src/brazo_pkg/brazo_pkg/mover_brazo.py** Nodo para mover el brazo mediante JointState
+
+### **Nodos** 
+Nuestros nodos realizan tareas concretas
+- **mover_brazo** este publica /join_states , calcula los angulo de cada joint(brazo) en tiempo real (azul, rojo y el verde horizontal) y publica un mensaje **sensor_msgs/JointState** en la linea **self.joint_pub.publish(msg)**
+
+- **robot_state_publisher** es un nodo que se lanza desde el archivo **brazo_sim.launch.py** Recibe la descripcion del robot (robot_description) **parameters=[{'robot_description': robot_desc}]** le pasamos la info de nuestro brazo. Y luego toma los "joint_states" (movimientos) publicados por el nodo **mover_brazo** ,calcula la posicion y orientacion de cada link, publica la posicion de cada link en TF(transform frames) , luego RViz(la ventana donde se muestra todo)usa estos TF para mostrar la posicion del robot segun los joints.
+
+-  **rviz2** Es nuestro nodo de visualizacion , muestra (obviamente) el modelo 3D del brazo , movimientos y referencias.
+
+### Topicos 
+Nuestros canales de comunicacion asincrono
+- **/joint_states** PUBCLICADO por mover_brazo.py en la linea **self.joint_pub = self.create_publisher(JointState, '/joint_states', 10)** , trabaja con tipos de mensajes sensor_msgs/JointState como se mencionó antes. SUSCRITO por **robot_state_publisher** en brazo_sim.launch.py , pero se hace internamente.Nosostros solo definimos Node robot_state_publisher en este .launch.py en cuestión.
+
+### Mensajes
+Como se viene mencionando el tipo de mensajes manejado por el topico es **sensor_msgs/JointState**, contiene la info del movimiento en unidades angulares, cada cierto tiempo calculamos funciones seno para mostrar movimientos suaves, lo publicamos en en el topico **/join_states** , de modo que RViz recibe (mediante robot_state_publisher) estos nuevos valores y actualiza las posiciones de los links(las articulaciones)
+
+### Movimiento del brazo
+Los Joints se mueven de acuerdo a una amplitud angular definidos en  **self.amplitudes = [math.pi/4, math.pi/6, math.pi/6]** y una velocidad definidos en **self.speeds = [0.5, 0.3, 0.8]** , se usarán estos dos datos para el calculo del angulo.
+
+Calculamos el angulo en cuestion , estos  abarcarán cada una de nuestras articulaciones: Joint1(azul) es la articulacion base, se mueve de acuerdo a **angle1 = self.amplitudes[0] * math.sin(self.speeds[0] * t)** , Joint2(rojo) hace lo propio via **angle2 = self.amplitudes[1] * math.sin(self.speeds[1] * t)**. En tanto que Joint3(verde)  usa **angle3 = max_angle * (1 - math.cos(self.speeds[2] * t)) / 2** para simular el movimiento de una pala de tractor, no completa la rotacion , unicamente levanta y baja.
+
+### Launch file (brazo_sim.launch.py)
+Al ejecutarlo inciamos los 3 nodos mencionados mover_brazo → robot_state_publisher→ rviz2; se crea el movimiento y luego se publica en el topico /Joint_states, como robot_state_publisher esta suscrito a este topico , los recibe , los transforma a TF . Se los pasa a RViz(osea rviz esta suscrito al topico /tf) y este muestra en pantalla en tiempo real los movimientos del brazo.
+<p align="center">
+    <img src="brazo.png"
+    width="70%"
+    >
+</p>
