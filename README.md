@@ -3,6 +3,7 @@ FLORES VILLAR ESAÚ<br>
 MILAGROS CRISTINA RUIZ ARICA<br>
 OMAR ROMULO QUISPE SANTOS<br>
 BRIAN ALBERTO HUAMAN GARCIA<br>
+JHAN CARLOS CCANTO <br>
 
 El repo git : https://github.com/FloresVillar/pc4_robotica.git
 
