@@ -1,6 +1,14 @@
 # PC4 BRAZO ROBOTICO 
+FLORES VILLAR ESAU<br>
+MILAGROS CRISTINA RUIZ ARICA<br>
+OMAR ROMULA QUISPE SANTOS<br>
+BRIAN ALBERTO HUAMAN GARCIA<br>
 
 
+El repo git : https://github.com/FloresVillar/pc4_robotica.git
+
+
+Para instalar ROS2 kilted 
 seguir la guia de instalacion 
 
 https://docs.ros.org/en/kilted/Installation/Alternatives/Ubuntu-Development-Setup.html
