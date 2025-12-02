@@ -4,9 +4,7 @@ MILAGROS CRISTINA RUIZ ARICA<br>
 OMAR ROMULA QUISPE SANTOS<br>
 BRIAN ALBERTO HUAMAN GARCIA<br>
 
-
 El repo git : https://github.com/FloresVillar/pc4_robotica.git
-
 
 Para instalar ROS2 kilted 
 seguir la guia de instalacion 
