@@ -6,7 +6,7 @@ source /opt/ros/kilted/setup.bash
 source ~/pc4_robotica/brazo_robot_ws/install/setup.bash
 #construccion
  ros2 launch brazo_pkg brazo_sim.launch.py
-## en RViz 
+## En RViz
 Displays/Global Options / Fixed Frame → escoger base_link
 luego add RobotModel /Description Topic → "/robot_description" (nuestro brazo)
 ```
